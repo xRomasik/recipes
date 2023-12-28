@@ -1,5 +1,5 @@
 {
-  "homepage" : "http://romasik.github.io/recipes",
+  "homepage" : "https://xromasik.github.io/recipes",
   "name": "recipes",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
