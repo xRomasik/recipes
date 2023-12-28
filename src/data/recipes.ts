@@ -1066,4 +1066,14 @@ export const recipes: Recipes = [
     type: "main",
     ingredients: [Ingredients.KURECI, Ingredients.SPENAT, Ingredients.SMETANA],
   },
+  {
+    name: "Tuňáková bageta",
+    type: "main",
+    ingredients: [Ingredients.VEJCE, Ingredients.MAJONEZA, Ingredients.TUNAK],
+  },
+  {
+    name: "Šunková bageta",
+    type: "main",
+    ingredients: [Ingredients.SUNKA, Ingredients.SYR, Ingredients.VEJCE, Ingredients.MAJONEZA],
+  },
 ];
