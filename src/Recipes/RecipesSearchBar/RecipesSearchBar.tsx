@@ -1,42 +1,70 @@
-import { recipes } from "../../data/recipes";
-import { unique } from "../../helpers/unique";
 import { MultiSelect } from "react-multi-select-component";
 import { Option } from "../../App";
-import { Box } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Stack } from "@mui/material";
+import { Ingredient } from "../../data/ingredients";
+import { useEffect, useState } from "react";
 
 export const RecipesSearchBar = (props: {
+  ingredients: Ingredient[];
   selected: Option[];
-  setSelected: React.Dispatch<React.SetStateAction<Option[]>>;
+  setSelected: (options: Option[]) => void;
 }) => {
-  const options: {
-    value: string;
-    label: string;
-  }[] = recipes
-    .flatMap((recipe) => recipe.ingredients)
-    .filter(unique)
-    .map((ingredient) => {
-      return {
-        label: ingredient,
-        value: ingredient,
-      };
-    });
+  const { ingredients, setSelected } = props;
+  const [useFridgeAsFilter, setUseFridgeAsFilter] = useState<boolean>(true);
 
-    console.log(options)
+  useEffect(() => {
+    if (useFridgeAsFilter) {
+      setSelected(
+        ingredients
+          .filter((ing) => ing.isInFridge)
+          .map((ing) => ({
+            label: ing.name,
+            value: ing.name,
+          }))
+      );
+    }
+  }, [useFridgeAsFilter, ingredients, setSelected]);
 
   return (
-    <Box
+    <Stack
+      direction="row"
+      justifyContent="space-evenly"
       sx={{
-        width: "50%",
-        paddingBottom: "10px"
+        ".dropdown-content": {
+          zIndex: "20",
+        },
       }}
     >
-      <MultiSelect
-        hasSelectAll={false}
-        labelledBy="label"
-        value={props.selected}
-        onChange={props.setSelected}
-        options={options}
+      <FormControlLabel
+        control={
+          <Checkbox
+            name="useFridgeAsFilter"
+            checked={useFridgeAsFilter}
+            onChange={(e) => {
+              setUseFridgeAsFilter(e.target.checked);
+              if (!e.target.checked) {
+                setSelected([]);
+              }
+            }}
+          />
+        }
+        label="Lednice"
       />
-    </Box>
+      <Box sx={{ width: "70%" }}>
+        <MultiSelect
+          hasSelectAll={false}
+          labelledBy="label"
+          value={useFridgeAsFilter ? [] : props.selected}
+          onChange={(options: Option[]) => {
+            props.setSelected(options);
+            setUseFridgeAsFilter(false);
+          }}
+          options={props.ingredients.map((ing) => ({
+            value: ing.name,
+            label: ing.name,
+          }))}
+        />
+      </Box>
+    </Stack>
   );
 };

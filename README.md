@@ -2,12 +2,17 @@
 
 ## Todo
 
-Přidat databázi
-   + globální storage na recepty
-   + přidávání receptů
-   + odstranění receptů
-   + autorizace
-   + storage na recepty podle účtu
 
-Jestli může být recept jako meal prep
-Širší select na telefonech
+
+   + Širší select na telefonech
+   + lednička
+   + Odstranění ingrediencí
+   + update receptů NTH
+
+
+   + autorizace {
+      stránka bez přihlášení
+   }
+
+
+   + security rules umožňují verified userovi insertovat data s jakýmkoli userID
