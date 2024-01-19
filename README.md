@@ -5,7 +5,8 @@ The code in this application is garbage and I am aware of it. it's not even clos
 
 ## Todo
 
-
+   + debounce na ingredience 
+   + vytvořit společný účet
 
    + Širší select na telefonech
    + Odstranění ingrediencí
@@ -15,5 +16,3 @@ The code in this application is garbage and I am aware of it. it's not even clos
    + autorizace {
       stránka bez přihlášení
    }
-
-

@@ -140,23 +140,25 @@ export const NewRecipe = (props: {
             }));
           }}
         />
-        <Box>
-          {recipeData.ingredients.map((ingredient) => {
-            return (
-              <Chip
-                key={ingredient}
-                label={ingredient}
-                color="success"
-                sx={{
-                  mr: "5px",
-                  mt: "4px",
-                  color: "black",
-                  backgroundColor: "rgb(170, 235, 148)",
-                }}
-              />
-            );
-          })}
-        </Box>
+        {recipeData.ingredients.length > 0 && (
+          <Box>
+            {recipeData.ingredients.map((ingredient) => {
+              return (
+                <Chip
+                  key={ingredient}
+                  label={ingredient}
+                  color="success"
+                  sx={{
+                    mr: "5px",
+                    mt: "4px",
+                    color: "black",
+                    backgroundColor: "rgb(170, 235, 148)",
+                  }}
+                />
+              );
+            })}
+          </Box>
+        )}
         <TextField
           label="Časová náročnost"
           name="complexity"

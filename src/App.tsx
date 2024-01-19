@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { RecipesList } from "./Recipes/RecipesList/RecipeList";
-import { RecipesSearchBar } from "./Recipes/RecipesSearchBar/RecipesSearchBar";
+import { RecipesSearchBarWithFridge } from "./Recipes/RecipesSearchBar/RecipesSearchBarWithFridge";
 import { Ingredient } from "./data/ingredients";
 import { Header } from "./header/header";
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
@@ -53,7 +53,7 @@ function App() {
         <Fridge ingredients={ingredients} setIngredients={setIngredients} />
         <Box>
           <Box sx={{ width: "100%" }}>
-            <RecipesSearchBar
+            <RecipesSearchBarWithFridge
               ingredients={ingredients}
               selected={selected}
               setSelected={setSelected}

@@ -14,3 +14,7 @@ body {
 .recipe-name ::first-letter {
           text-transform: uppercase; 
 }
+
+.RecipesSearchBar .dropdown-heading {
+    height: 55px !important
+}

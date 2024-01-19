@@ -60,7 +60,7 @@ export const Header = (props: {
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
-        ></IconButton>
+        />
         <Typography
           textAlign={"center"}
           variant="h6"

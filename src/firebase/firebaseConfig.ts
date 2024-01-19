@@ -80,27 +80,10 @@ auth.setPersistence(browserLocalPersistence);
 export const googleSignIn = (
   setUser: React.Dispatch<React.SetStateAction<User | null>>
 ) =>
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential?.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...¨
-      setUser(user);
-    })
-    .catch(() => {
-      // // Handle Errors here.
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // // The email of the user's account used.
-      // const email = error.customData.email;
-      // // The AuthCredential type that was used.
-      // const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
+  signInWithPopup(auth, provider).then((result) => {
+    const user = result.user;
+    setUser(user);
+  });
 
 export const userSignOut = () => {
   signOut(auth);
@@ -201,6 +184,30 @@ export async function updateIngredient(
 
   callback(await getUserIngredients());
 }
+
+export const updateIngredientsInFridgeBulk = async (
+  ingredients: Ingredient[],
+  callback: (ingredients: Ingredient[]) => void
+) => {
+  const batch = writeBatch(db);
+
+  if (!ingredients.length) {
+    return;
+  }
+
+  ingredients.forEach((ingredient) => {
+    const ingredientRef = doc(collection(db, "ingredients"), ingredient.id);
+
+    batch.set(ingredientRef, {
+      ...ingredient,
+      isInFridge: !ingredient.isInFridge,
+      userId: auth.currentUser?.uid,
+    });
+  });
+
+  await batch.commit();
+  callback(await getUserIngredients());
+};
 
 export async function deleteRecipe(
   recipeId: string,
