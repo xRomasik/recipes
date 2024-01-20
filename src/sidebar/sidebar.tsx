@@ -30,7 +30,7 @@ export const Sidebar = (props: {
         open={isOpen}
         onClose={() => setIsOpen(false)}
         PaperProps={{
-          sx: { width: "25%" },
+          sx: { width: "30%" },
         }}
       >
         <Box>

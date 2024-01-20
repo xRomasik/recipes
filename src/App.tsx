@@ -7,7 +7,6 @@ import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { getUserIngredients, getUserRecipes } from "./firebase/firebaseConfig";
 import { RecipeWithDocId } from "./data/recipes";
 import { Box, Stack } from "@mui/material";
-import { Fridge } from "./Recipes/Fridge/Fridge";
 
 export type Option = {
   value: string;
@@ -50,7 +49,6 @@ function App() {
       />
       <br />
       <Stack direction="row">
-        <Fridge ingredients={ingredients} setIngredients={setIngredients} />
         <Box>
           <Box sx={{ width: "100%" }}>
             <RecipesSearchBarWithFridge

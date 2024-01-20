@@ -17,6 +17,7 @@ import { User } from "firebase/auth";
 import { getKeys } from "../helpers/object";
 import { Ingredient } from "../data/ingredients";
 import { RecipeWithDocId } from "../data/recipes";
+import { FridgeSidebar } from "../sidebar/FridgeSidebar";
 
 const settings = {
   logout: {
@@ -55,11 +56,9 @@ export const Header = (props: {
           setIngredients={props.setIngredients}
           setRecipes={props.setRecipes}
         />
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
+        <FridgeSidebar
+          ingredients={props.ingredients}
+          setIngredients={props.setIngredients}
         />
         <Typography
           textAlign={"center"}

@@ -12,6 +12,8 @@ export const Fridge = (props: {
     []
   );
 
+  console.log("ingredientsToUpdate", ingredientsToUpdate);
+
   const sortIngredients = () => {
     return [...props.ingredients].sort((a, b) => {
       if (a.isInFridge && !b.isInFridge) {
@@ -36,6 +38,13 @@ export const Fridge = (props: {
   );
 
   const isIngredientInFridge = (ingredient: Ingredient): boolean => {
+    if (ingredient.name === "humus") {
+      console.log(
+        ingredient,
+        ingredientsToUpdate.map((ing) => ing.id).includes(ingredient.id)
+      );
+    }
+
     if (ingredientsToUpdate.map((ing) => ing.id).includes(ingredient.id)) {
       if (ingredient.isInFridge) {
         return false;
@@ -56,9 +65,13 @@ export const Fridge = (props: {
       </Box>
       <div style={{ marginLeft: "20px", marginTop: "20px" }}>
         {sortIngredients().map((ingredient) => {
+          const isActive = isIngredientInFridge(ingredient);
+
           return (
             <Chip
               onClick={() => {
+                console.log("CLICKED");
+
                 const ingredientToAddIds = ingredientsToUpdate.map(
                   (ing) => ing.id
                 );
@@ -74,7 +87,6 @@ export const Fridge = (props: {
                     ingredient,
                   ];
                 }
-
                 setIngredientsToUpdate(latestIngredientsToUpdate);
                 debouncedUpdateIngredients(latestIngredientsToUpdate);
               }}
@@ -85,9 +97,14 @@ export const Fridge = (props: {
                 mr: "5px",
                 mt: "4px",
                 color: "black",
-                backgroundColor: isIngredientInFridge(ingredient)
+                backgroundColor: isActive
                   ? "rgb(170, 235, 148)"
                   : "rgb(211, 47, 47 / 46%)",
+                "&:hover": {
+                  backgroundColor: isActive
+                    ? "rgb(170, 235, 148)"
+                    : "rgb(211, 47, 47 / 46%)",
+                },
               }}
             />
           );

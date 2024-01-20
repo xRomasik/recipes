@@ -5,10 +5,14 @@ import {
   DialogTitle,
   DialogActions,
   Button,
+  Box,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const DeleteRecipe = (props: { onConfirm: () => void }) => {
+export const DeleteRecipe = (props: {
+  expanded: boolean;
+  onConfirm: () => void;
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -19,8 +23,14 @@ export const DeleteRecipe = (props: { onConfirm: () => void }) => {
     handleClose();
   };
 
-  return (
-    <>
+  return props.expanded ? (
+    <Box
+      sx={{
+        position: "absolute",
+        right: "3px",
+        bottom: "3px",
+      }}
+    >
       <IconButton onClick={handleOpen}>
         <DeleteIcon />
       </IconButton>
@@ -35,6 +45,6 @@ export const DeleteRecipe = (props: { onConfirm: () => void }) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
-  );
+    </Box>
+  ) : null;
 };

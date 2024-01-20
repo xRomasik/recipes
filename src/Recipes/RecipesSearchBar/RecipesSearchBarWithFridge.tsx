@@ -27,6 +27,7 @@ export const RecipesSearchBarWithFridge = (props: {
 
   return (
     <Stack
+    className="fridge_checkbox_stack"
       direction="row"
       justifyContent="space-evenly"
       sx={{
