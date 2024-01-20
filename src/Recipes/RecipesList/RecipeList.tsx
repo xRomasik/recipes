@@ -163,10 +163,11 @@ const RecipeHeader = (props: {
     availableIngredients,
   } = props;
 
-  const isMoreThanHalf = availableIngredients / totalIngredients  >= 0.5;
+  const isMoreThanHalf = availableIngredients / totalIngredients >= 0.5;
 
   return (
     <Box
+      onClick={handleExpandClick}
       sx={{
         display: "flex",
         justifyContent: "space-between",
@@ -183,7 +184,6 @@ const RecipeHeader = (props: {
         }}
       >
         <IconButton
-          onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
           sx={{
@@ -241,7 +241,7 @@ const RecipeHeader = (props: {
             fontSize: "14px",
             marginTop: "-15px",
             color: isMoreThanHalf ? "rgb(47 169 5)" : "red",
-            fontWeight: "bold"
+            fontWeight: "bold",
           }}
         >
           {`${availableIngredients}/${totalIngredients}`}
